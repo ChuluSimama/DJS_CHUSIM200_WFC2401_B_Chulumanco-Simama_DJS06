@@ -70,3 +70,8 @@ console.log(
     .reduce((total, product) => total + Number(product.price), 0)
 );
 
+// Concatenate all product names into a single string
+console.log(
+  "Concatenated Product Names:",
+  products.reduce((names, product) => names + product.product, "")
+);
