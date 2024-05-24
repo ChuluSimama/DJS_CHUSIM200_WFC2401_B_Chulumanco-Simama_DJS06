@@ -75,3 +75,17 @@ console.log(
   "Concatenated Product Names:",
   products.reduce((names, product) => names + product.product, "")
 );
+
+// Identify the highest and lowest-priced items
+const validPrices = products
+  .filter((product) => product.price.trim() !== "")
+  .map((product) => Number(product.price));
+const highestPrice = Math.max(...validPrices);
+const lowestPrice = Math.min(...validPrices);
+const highestProduct = products.find(
+  (product) => Number(product.price) === highestPrice
+).product;
+const lowestProduct = products.find(
+  (product) => Number(product.price) === lowestPrice
+).product;
+console.log(`Highest: ${highestProduct}. Lowest: ${lowestProduct}`);
