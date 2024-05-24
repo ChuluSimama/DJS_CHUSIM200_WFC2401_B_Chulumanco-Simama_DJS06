@@ -48,3 +48,11 @@ const nameProvinceMapping = names.reduce((acc, name, index) => {
   return acc;
 }, {});
 console.log(nameProvinceMapping);
+
+
+// log products
+console.log(
+  "Products:",
+  products.forEach((product) => console.log(product.product))
+);
+
