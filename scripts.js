@@ -56,3 +56,8 @@ console.log(
   products.forEach((product) => console.log(product.product))
 );
 
+// Filter prodcts by name length
+console.log(
+  "Filtered Products by Name Length:",
+  products.filter((product) => product.product.length <= 5)
+);
