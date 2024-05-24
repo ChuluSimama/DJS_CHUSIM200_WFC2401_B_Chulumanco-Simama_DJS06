@@ -51,41 +51,50 @@ console.log(nameProvinceMapping);
 
 
 // log products
-console.log(
-  "Products:",
-  products.forEach((product) => console.log(product.product))
-);
+console.log({
+  Products: products
+    .map((product) => product.product)
+    .forEach((productName) => console.log(productName)),
 
-// Filter prodcts by name length
-console.log(
-  "Filtered Products by Name Length:",
-  products.filter((product) => product.product.length <= 5)
-);
+  // Filter prodcts by name length
+  FilteredProductsbyNameLength: products.filter(
+    (product) => product.product.length <= 5
+  ),
 
-// Filter out products without prices, convert string prices to numbers, and calculate the total price
-console.log(
-  "Total Price:",
-  products
+  // Filter out products without prices, convert string prices to numbers, and calculate the total price
+  TotalPrice: products
     .filter((product) => product.price.trim() !== "")
-    .reduce((total, product) => total + Number(product.price), 0)
-);
+    .reduce((total, product) => total + Number(product.price), 0),
 
-// Concatenate all product names into a single string
-console.log(
-  "Concatenated Product Names:",
-  products.reduce((names, product) => names + product.product, "")
-);
+  // Concatenate all product names into a single string
+  ConcatenatedProductNames: products.reduce(
+    (names, product) => names + product.product,
+    ""
+  ),
 
-// Identify the highest and lowest-priced items
-const validPrices = products
-  .filter((product) => product.price.trim() !== "")
-  .map((product) => Number(product.price));
-const highestPrice = Math.max(...validPrices);
-const lowestPrice = Math.min(...validPrices);
-const highestProduct = products.find(
-  (product) => Number(product.price) === highestPrice
-).product;
-const lowestProduct = products.find(
-  (product) => Number(product.price) === lowestPrice
-).product;
-console.log(`Highest: ${highestProduct}. Lowest: ${lowestProduct}`);
+  // Identify the highest and lowest-priced items
+  ExtremesInPrices: (() => {
+    const validPrices = products
+      .filter((product) => product.price.trim() !== "")
+      .map((product) => Number(product.price));
+    const highestPrice = Math.max(...validPrices);
+    const lowestPrice = Math.min(...validPrices);
+    const highestProduct = products.find(
+      (product) => Number(product.price) === highestPrice
+    ).product;
+    const lowestProduct = products.find(
+      (product) => Number(product.price) === lowestPrice
+    ).product;
+    return `Highest: ${highestProduct}. Lowest: ${lowestProduct}`;
+  })(),
+
+  // // Object Transformation
+  TransformedProductsObject: Object.fromEntries(
+    Object.entries(
+      products.reduce((acc, product) => {
+        acc[product.product] = { name: product.product, cost: product.price };
+        return acc;
+      }, {})
+    )
+  ),
+});
