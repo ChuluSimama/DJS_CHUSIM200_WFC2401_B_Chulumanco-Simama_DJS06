@@ -61,3 +61,12 @@ console.log(
   "Filtered Products by Name Length:",
   products.filter((product) => product.product.length <= 5)
 );
+
+// Filter out products without prices, convert string prices to numbers, and calculate the total price
+console.log(
+  "Total Price:",
+  products
+    .filter((product) => product.price.trim() !== "")
+    .reduce((total, product) => total + Number(product.price), 0)
+);
+
